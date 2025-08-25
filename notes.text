@@ -1,0 +1,6 @@
+postgres://postgres:postgres@localhost:5432/gator url
+To get into the db: psql postgres://postgres:postgres@localhost:5432/gator
+
+migrating: cd sql/schema
+up migrate: goose postgres postgres://postgres:postgres@localhost:5432/gator up
+down migrate: goose postgres postgres://postgres:postgres@localhost:5432/gator down
