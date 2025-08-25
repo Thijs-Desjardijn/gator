@@ -80,6 +80,14 @@ func registerCommands() error {
 	if err != nil {
 		return err
 	}
+	err = cmds.register("follow", handlerFollow)
+	if err != nil {
+		return err
+	}
+	err = cmds.register("following", handlerFollowing)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -146,6 +154,50 @@ func handlerAddFeed(s *state, cmd command) error {
 	if err != nil {
 		return err
 	}
+	cmd.Arguments[0] = cmd.Arguments[1]
+	err = handlerFollow(s, cmd)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func handlerFollowing(s *state, _ command) error {
+	user, err := s.db.GetUser(context.Background(), sql.NullString{String: s.cfg.CurrentUserName, Valid: true})
+	if err != nil {
+		return err
+	}
+	feeds, err := s.db.GetFeedFollowsForUser(context.Background(), user.ID)
+	if err != nil {
+		return err
+	}
+	fmt.Println("Current feeds you are following:")
+	for _, feed := range feeds {
+		fmt.Printf("Title: %v\n", feed.FeedName)
+	}
+	return nil
+}
+
+func handlerFollow(s *state, cmd command) error {
+	if len(cmd.Arguments) < 1 {
+		return errors.New("expected argument: 'url'")
+	}
+	url := cmd.Arguments[0]
+	feedId, err := s.db.GetFeedId(context.Background(), url)
+	if err != nil {
+		return err
+	}
+	user, err := s.db.GetUser(context.Background(), sql.NullString{String: s.cfg.CurrentUserName, Valid: true})
+	if err != nil {
+		return err
+	}
+	args := database.CreateFeedFollowParams{
+		CreatedAt: sql.NullTime{Time: time.Now(), Valid: true},
+		UpdatedAt: sql.NullTime{Time: time.Now(), Valid: true},
+		UserID:    user.ID,
+		FeedID:    feedId,
+	}
+	s.db.CreateFeedFollow(context.Background(), args)
 	return nil
 }
 
@@ -159,7 +211,7 @@ func handlerFeeds(s *state, _ command) error {
 		if err != nil {
 			return err
 		}
-		fmt.Printf("Title: %v\nUrl: %v\nAuthor: %v\n\n", feed.Name, feed.Url, userName)
+		fmt.Printf("Title: %v\nUrl: %v\nAuthor: %v\n\n", feed.Name, feed.Url, userName.String)
 	}
 	return nil
 }
