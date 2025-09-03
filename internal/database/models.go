@@ -12,12 +12,13 @@ import (
 )
 
 type Feed struct {
-	ID        int32
-	CreatedAt sql.NullTime
-	UpdatedAt sql.NullTime
-	Name      string
-	Url       string
-	UserID    uuid.UUID
+	ID            int32
+	CreatedAt     sql.NullTime
+	UpdatedAt     sql.NullTime
+	Name          string
+	Url           string
+	UserID        uuid.UUID
+	LastFetchedAt sql.NullTime
 }
 
 type FeedFollow struct {
@@ -26,6 +27,17 @@ type FeedFollow struct {
 	UpdatedAt sql.NullTime
 	UserID    uuid.UUID
 	FeedID    int32
+}
+
+type Post struct {
+	ID          int32
+	CreatedAt   sql.NullTime
+	UpdatedAt   sql.NullTime
+	Title       sql.NullString
+	Url         string
+	Description sql.NullString
+	PublishedAt sql.NullTime
+	FeedID      int32
 }
 
 type User struct {

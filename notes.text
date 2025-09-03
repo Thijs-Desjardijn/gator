@@ -4,3 +4,8 @@ To get into the db: psql postgres://postgres:postgres@localhost:5432/gator
 migrating: cd sql/schema
 up migrate: goose postgres postgres://postgres:postgres@localhost:5432/gator up
 down migrate: goose postgres postgres://postgres:postgres@localhost:5432/gator down
+
+changing/adding queries
+go inside sql/queries/...
+do the change 
+run `sqlc generate` inside rep
