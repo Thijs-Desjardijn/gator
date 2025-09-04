@@ -200,6 +200,11 @@ func handlerBrowse(s *state, cmd command) error {
 			fmt.Println(err)
 			continue
 		}
+		err = s.db.MarkFeedFetched(context.Background(), feed.ID)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
 		RSSFeed, err := fetchFeed(context.Background(), feed.Url)
 		if err != nil {
 			fmt.Println(err)
