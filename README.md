@@ -1,5 +1,5 @@
 # Gator
-Gator is a blog aggregator. The name gator is ofcourse a little joke. This can be used to add blogs that you follow and combine them so you are able to view the latest posts of all those blogs in one place.
+Gator is a blog aggregator. The name gator is ofcourse a little joke. Gator can be used to add blogs that you follow and combine them so you are able to view the latest posts of all those blogs in one place.
 
 ## Features
 - **agg** aggregate over the blogs you follow
@@ -32,10 +32,13 @@ and everything is set for use.
 
 ## Usage
 You can view all the commands at feature, but here is a more in depth explanation. **You have to use: ./gator "the command" "the arguments seperated by spaces"**
-- **agg** 
-aggregate over the feeds that you added with
--- args: the time between the aggretations in this format: 1s, 1m, 1h etc
-- **browse** find the newest posts
+**agg** 
+- Aggregate over the feeds that you added
+- `args`: the time between the aggretations in this format: 1s, 1m, 1h etc
+**browse**
+- Browse through your added feeds/blogs
+- `args`: a limit of the amount of posts you would like to see wich defaults to 2 
+
 - **register** register an account
 - **login** login to your account
 - **addfeed** add a blog/feed so you can follow it
