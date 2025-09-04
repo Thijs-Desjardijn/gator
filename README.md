@@ -1,0 +1,50 @@
+# Gator
+Gator is a blog aggregator. The name gator is ofcourse a little joke. This can be used to add blogs that you follow and combine them so you are able to view the latest posts of all those blogs in one place.
+
+## Features
+- **agg** aggregate over the blogs you follow
+- **browse** find the newest posts
+- **register** register an account
+- **login** login to your account
+- **addfeed** add a blog/feed so you can follow it
+- **follow** follow an added feed
+- **unfollow** unfollow a feed you are following. this can be undone by using follow
+- **following** list the feeds you are following
+- **feeds** lists all the feeds that you added
+- **users** lists all the users on your machine
+- **reset** if you want to you can fully reset everything
+
+
+## Install
+- First of check if you have go installed using
+  ```bash
+  go version
+  ```
+  If it shows a version move to the next step. If not install [go](https://go.dev/doc/install) and follow the instructions.
+
+- Secondly download [postgress](https://www.postgresql.org/download/) if you had not already.
+
+- Then use
+```bash
+go install https://github.com/Thijs-Desjardijn/gator
+```
+and everything is set for use.
+
+## Usage
+You can view all the commands at feature, but here is a more in depth explanation. **You have to use: ./gator "the command" "the arguments seperated by spaces"**
+- **agg** 
+aggregate over the feeds that you added with
+-- args: the time between the aggretations in this format: 1s, 1m, 1h etc
+- **browse** find the newest posts
+- **register** register an account
+- **login** login to your account
+- **addfeed** add a blog/feed so you can follow it
+- **follow** follow an added feed
+- **unfollow** unfollow a feed you are following. this can be undone by using follow
+- **following** list the feeds you are following
+- **feeds** lists all the feeds that you added
+- **users** lists all the users on your machine
+- **reset** if you want to you can fully reset everything
+
+
+  
